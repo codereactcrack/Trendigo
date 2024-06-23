@@ -5,9 +5,9 @@ import { auth } from '../../../services/firebase';
 import UserContext from '../../../context/AuthContext/UserContext';
 import { useNavigate } from 'react-router-dom';
 import './css/RegisterPage.css'
-import Banner2 from '../../../assets/images/banner2.avif'
+import Banner2 from '../../../assets/images/banner2.jpg'
 import SendIcon from '@mui/icons-material/Send';
-import Banner from '../../../assets/images/Banner.png'
+import Logo from '../../../assets/images/logo.png'
 
 const RegisterPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -37,7 +37,7 @@ const RegisterPage = () => {
 
       <div className='register-form-left'>
         <form onSubmit={handleSubmit(onSubmit)} className='register-form'>
-          <img src ={Banner} alt='logo' className='register-logo'/>
+          <img src ={Logo} alt='logo' className='register-logo'/>
           <span className='register-heading'>Create Your Profile:</span>
           <label className='register-label'>First Name:
             <input type='text' placeholder='Enter First Name..' className='register-input'

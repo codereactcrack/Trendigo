@@ -23,7 +23,7 @@
 .register-logo {
     display: block;
     margin: 0 auto 20px;
-    width: 200px;
+    width: 100px;
     height: auto;
     transition: transform 0.3s;
 }

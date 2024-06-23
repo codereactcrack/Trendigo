@@ -3,7 +3,7 @@ import LoginEmail from './LoginEmail'
 import LoginGoogle from '../Login/LoginGoogle'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../../assets/images/logo.png'
-import Banner1 from '../../../assets/images/banner1.avif';
+import Banner1 from '../../../assets/images/banner1.jpg';
 import './css/LoginPage.css'
 
 const LoginPage = () => {
