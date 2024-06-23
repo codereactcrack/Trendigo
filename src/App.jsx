@@ -1,18 +1,19 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
+import { Suspense, lazy } from 'react';
 
-import Home from './pages/home/Home';
-import Shop from './pages/shop/Shop';
-import About from './pages/about/About';
-import Contact from './pages/contact/Contact';
-import Cart from './pages/cart/Cart';
-import Wishlist from './pages/wishlist/Wishlist';
-import Template from './component/template/Template';
-import ProtectedRoute from './component/Auth/ProtectedRoute/ProtectedRoute';
-import Profile from './pages/profile/Profile';
-import LoginPage from './component/Auth/Login/LoginPage';
-import RegisterPage from './component/Auth/Register/RegisterPage';
-import Terms from './pages/terms&privacy/Terms';
+const Home = lazy (()=> import('./pages/home/Home'));
+const Shop =lazy(()=> import('./pages/shop/Shop'))  ;
+const About = lazy (()=> import('./pages/about/About'));
+const Contact = lazy(()=>import( './pages/contact/Contact'));
+const Cart = lazy(()=>import ('./pages/cart/Cart'))
+const Wishlist = lazy(()=> import ('./pages/wishlist/Wishlist'))
+const Template = lazy(()=> import ('./component/template/Template'))
+const ProtectedRoute = lazy(()=> import ('./component/Auth/ProtectedRoute/ProtectedRoute'))
+const Profile = lazy(()=> import ('./pages/profile/Profile'))
+const LoginPage = lazy(()=>import ('./component/Auth/Login/LoginPage' ))
+const RegisterPage = lazy(()=>import ('./component/Auth/Register/RegisterPage'))
+const Terms = lazy(()=>import ('./pages/terms&privacy/Terms'))
 
 function App() {
 
@@ -37,7 +38,9 @@ function App() {
   );
   return (
     <>
-    <RouterProvider router={router} />
+    <Suspense fallback={<h1>Loading.....</h1>} >
+      <RouterProvider router={router} />
+    </Suspense>
     </>
   )
 }
