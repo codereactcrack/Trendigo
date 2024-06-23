@@ -1,0 +1,145 @@
+/* Overall login page container */
+.login-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Left banner section */
+.login-left-banner {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    transition: background-color 0.3s;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.login-left-banner img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.login-left-banner img:hover{
+    transform: scale(1.05);
+}
+
+/* Right authentication section */
+.login-right-auth {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #f9f6f6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+    border-radius: 10px;
+}
+
+.login-right-auth:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo and heading */
+.logo-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 20px;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+    /* Increases size on hover */
+}
+
+.heading {
+    text-align: center;
+}
+
+.primary-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.slogan {
+    font-size: 16px;
+    color: #666666;
+}
+
+/* Email authentication section */
+.email-auth {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+/* Bottom separator line */
+.bottom-line {
+    width: 100%;
+    max-width: 400px;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 20px 0;
+}
+
+/* Social authentication buttons */
+.social-auth {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-auth > * {
+    margin-bottom: 10px;
+}
+
+.social-auth a:hover {
+    transform: translateY(-3px);
+    /* Lifts the button slightly on hover */
+}
+
+/* Terms of service */
+.tos {
+    font-size: 12px;
+    color: #999999;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.tos a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.tos a:hover {
+    text-decoration: underline;
+}
+
+/* Register user link */
+.register-user {
+    font-size: 14px;
+    color: #666666;
+}
+
+.register-user a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-user a:hover {
+    text-decoration: underline;
+}

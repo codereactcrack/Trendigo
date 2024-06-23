@@ -1,0 +1,83 @@
+/* Container for the login form */
+.email-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f7fa;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Form styling */
+.login-form {
+  background-color: #ddeafb;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Label styling */
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Input field styling */
+.input-field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  border-color: #007bff;
+}
+
+/* Error message styling */
+.error-message {
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Login button container */
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Submit button styling */
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+

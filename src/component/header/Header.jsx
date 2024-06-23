@@ -28,7 +28,7 @@ const Header = () => {
       </div>
       <div className="header__auth-bar">
         <div className="header__icon">
-            <NavLink to="/login" activeClassName="active"><AccountCircleRoundedIcon /></NavLink>
+            <NavLink to="/profile" activeClassName="active"><AccountCircleRoundedIcon /></NavLink>
         </div>
         <div className="header__icon">
             <NavLink to="/wishlist" activeClassName="active"><FavoriteBorderOutlinedIcon /></NavLink>

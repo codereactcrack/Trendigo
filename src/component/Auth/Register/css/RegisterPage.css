@@ -1,0 +1,120 @@
+/* Overall register page container */
+.register-container {
+    display: flex;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Left form section */
+.register-form-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.register-form-left:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.register-logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 200px;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.register-logo:hover {
+    transform: scale(1.1);
+}
+
+.register-heading {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+.register-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333333;
+}
+
+.register-input {
+    width: calc(100% - 1rem);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.register-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+.register-form{
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 4rem;
+    background-color: #f5f7fa;
+    font-family: 'Arial', sans-serif;
+}
+.register-form p {
+    color: red;
+    margin: -0.75rem 0 1rem 0;
+}
+
+.register-button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
+}
+
+.send-icon {
+    font-size: 1.25rem;
+}
+
+/* Right banner section */
+.register-right-banner {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.register-right-banner img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.register-right-banner img:hover {
+    transform: scale(1.05);
+}

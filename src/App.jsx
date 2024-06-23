@@ -7,9 +7,12 @@ import About from './pages/about/About';
 import Contact from './pages/contact/Contact';
 import Cart from './pages/cart/Cart';
 import Wishlist from './pages/wishlist/Wishlist';
-import Login from './component/auth/Login';
 import Template from './component/template/Template';
-import ProtectedRoute from './component/protected/ProtectedRoute';
+import ProtectedRoute from './component/Auth/ProtectedRoute/ProtectedRoute';
+import Profile from './pages/profile/Profile';
+import LoginPage from './component/Auth/Login/LoginPage';
+import RegisterPage from './component/Auth/Register/RegisterPage';
+import Terms from './pages/terms&privacy/Terms';
 
 function App() {
 
@@ -22,10 +25,13 @@ function App() {
           <Route path='shop' element ={<Shop/>} />
           <Route path='about-us' element ={<About/>} />
           <Route path='contact-us' element ={<Contact />} />
-          <Route path='cart' element ={<Cart />} />
-          <Route path='wishlist' element ={<Wishlist />} />
+          <Route path='cart' element ={<ProtectedRoute element={<Cart /> } />}/>
+          <Route path='wishlist' element ={ <ProtectedRoute element={<Wishlist />} />} />
+          <Route path='/profile' element ={<Profile/>} />
+          <Route path='/terms' element ={<Terms/>} />
         </Route>
-        <Route path='login' element ={<ProtectedRoute element = {<Login />} />} />
+        <Route path='login' element ={<LoginPage />}/>
+        <Route path='sign-up' element ={<RegisterPage />}/>
       </Route>
     )
   );
