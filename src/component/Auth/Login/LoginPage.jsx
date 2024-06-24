@@ -1,12 +1,15 @@
 import React from 'react'
 import LoginEmail from './LoginEmail'
 import LoginGoogle from '../Login/LoginGoogle'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Logo from '../../../assets/images/logo.png'
 import Banner1 from '../../../assets/images/banner1.jpg';
 import './css/LoginPage.css'
 
 const LoginPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className='login-container'>
       <div className='login-left-banner'>
@@ -20,6 +23,7 @@ const LoginPage = () => {
           <div className='heading'>
             <div className='primary-heading'>TrendiGO</div>
             <div className='slogan'>Get Ready to Blab and Laugh!</div>
+            <div><button onClick={()=>navigate('/home')}> BACK</button></div>
           </div>
         </div>
         <div className='email-auth'>
