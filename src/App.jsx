@@ -23,7 +23,9 @@ function App() {
         <Route path='/' element={<Template/>}>
           <Route index element ={<Home/>} />
           <Route path='/home' element ={<Home />} />
-          <Route path='shop' element ={<Shop/>} />
+          <Route path='shop' element ={<Shop/>} >
+            <Route path=':filterType/:filterValue' element ={<Shop />} />
+          </Route>
           <Route path='about-us' element ={<About/>} />
           <Route path='contact-us' element ={<Contact />} />
           <Route path='cart' element ={<ProtectedRoute element={<Cart /> } />}/>
