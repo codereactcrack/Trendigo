@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 function Carousel() {
 
   const navigate = useNavigate();
+  const handleNavigate = useCallback(() => navigate('/shop'), [navigate]);
+
   const settings = {
     infinite: true,
     slidesToShow: 3,
@@ -18,32 +20,43 @@ function Carousel() {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     centerMode: true,
-    centerPadding: '20px', // Adjust the padding to provide a better gap
+    centerPadding: '20px',
   };
 
   const [imageUrls, setImageUrls] = useState([]);
+  const [loading, setLoading] = useState(true);
   const imagesListRef = ref(storage, 'gs://trendigo-25d4a.appspot.com/Carousel');
 
   useEffect(() => {
-    listAll(imagesListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageUrls((prev) => [...prev, url]);
-        });
-      });
-    });
+    const fetchImages = async () => {
+      try {
+        const response = await listAll(imagesListRef);
+        const urls = await Promise.all(response.items.map(item => getDownloadURL(item)));
+        setImageUrls(urls);
+      } catch (error) {
+        console.error("Error fetching images: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchImages();
   }, []);
 
   return (
     <div className="slider-container">
-      <Slider {...settings}>
-        {imageUrls.map((url, index) => (
-          <div key={index} className="image-container">
-            <img src={url} alt={`carousel-${index}`} className="carousel-image" />
-            <button className="shop-button" onClick={() => navigate('/shop')}>Shop Now</button>
-          </div>
-        ))}
-      </Slider>
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <Slider {...settings}>
+          {imageUrls.map((url, index) => (
+            <div key={index} className="image-container">
+              <img src={url} alt={`carousel-${index}`} className="carousel-image" />
+              <button className="shop-button" onClick={handleNavigate}>Shop Now</button>
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 }
