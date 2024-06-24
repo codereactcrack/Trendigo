@@ -11,16 +11,20 @@ import useAddUserDb from '../../../hooks/useAddUserDb';
 const LoginEmail = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const {setCurrentUser} = useContext(UserContext);
-
+  const {currentUser,setCurrentUser} = useContext(UserContext);
   async function onSubmit(data) {
     const { email, password } = data;
     try {
       const userInfo = await signInWithEmailAndPassword(auth, email, password);
-      setCurrentUser(userInfo.user);
-      console.log(userInfo);
-      await useAddUserDb(userInfo);
-      navigate('/profile');
+      if(userInfo.user.emailVerified){
+        setCurrentUser(userInfo.user);
+        await useAddUserDb(userInfo);
+        navigate('/profile');
+      }
+      else{
+        alert('Please Verify Your Email');
+        navigate('/login')
+      }
     } catch (error) {
       alert(error.message)
     }

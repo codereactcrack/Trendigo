@@ -75,6 +75,7 @@ const RegisterPage = () => {
             REGISTER USER
             <SendIcon className='send-icon' />
           </button>
+            <button onClick={()=>{navigate('/')}}>BACK</button>
         </form>
       </div>
       <div className='register-right-banner'>

@@ -7,9 +7,8 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm('default_service', 'template_y7uek0i', form.current, {
-        publicKey: 'Bf1I0CXSJF6Gc99wF',
+    emailjs.sendForm('default_service', import.meta.env.VITE_EMAILJS_TEMPLATE_KEY, form.current, {
+        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       })
       .then(
         () => {
@@ -37,6 +36,7 @@ const Contact = () => {
                   <input type="text" name="user_name"/>
                   <label>Email</label>
                   <input type="email" name="user_email"/>
+                  <div>Please Mention Your Order ID</div>
                   <label>Message</label>
                   <textarea name="message"/>
                   <input type="submit" value="Send"/>
