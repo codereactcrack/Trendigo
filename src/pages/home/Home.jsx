@@ -1,5 +1,8 @@
 import React from 'react'
 import Carousel from './Carousel'
+import Parallex from './Parallex'
+import FeaturedProduct from './FeaturedProduct'
+import TopBrands from './TopBrands'
 
 const Home = () => {
   return (
@@ -7,9 +10,9 @@ const Home = () => {
       <div className='carousel-container'>
         <Carousel />
       </div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div className='featured-product'><FeaturedProduct /></div>
+      <div className='top-brands'><TopBrands /></div>
+      <div className='category-parallex'><Parallex/></div>
     </div>
 
   )

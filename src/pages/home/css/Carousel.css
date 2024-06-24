@@ -21,20 +21,3 @@
     object-fit: cover; /* Ensures images are centered and cropped properly */
   }
   
-  .shop-button {
-    position: absolute; /* Position button absolutely within the image container */
-    bottom: 20px; /* Adjust to place the button near the bottom of the image */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #000; /* Text color */
-  }
-  
-  .shop-button:hover {
-    background-color: rgba(255, 255, 255, 1); /* Full opacity on hover */
-  }
-  

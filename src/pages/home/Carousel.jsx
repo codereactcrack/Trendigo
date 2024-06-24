@@ -50,9 +50,8 @@ function Carousel() {
       ) : (
         <Slider {...settings}>
           {imageUrls.map((url, index) => (
-            <div key={index} className="image-container">
+            <div key={index} className="image-container" onClick={handleNavigate}>
               <img src={url} alt={`carousel-${index}`} className="carousel-image" />
-              <button className="shop-button" onClick={handleNavigate}>Shop Now</button>
             </div>
           ))}
         </Slider>
