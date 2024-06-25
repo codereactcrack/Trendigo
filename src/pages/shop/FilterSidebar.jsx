@@ -11,6 +11,9 @@ const FilterSidebar = () => {
         setValue(newValue);
     };
 
+    function valuetext(value) {
+        return `${value}`;
+    }
 
     return (
         <div className='filter-sidebar'>
