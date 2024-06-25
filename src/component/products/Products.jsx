@@ -1,38 +1,19 @@
-import React, { useContext } from 'react'
+import React  from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import useFetchCollection from '../../hooks/useFetchCollection';
-import UserContext from '../../context/AuthContext/UserContext';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
+import useAddWishList from '../../hooks/useAddWishList';
 
 const Products = () => {
   const {filterType,filterValue} = useParams();
   const list = useFetchCollection('product-list');
   const naviagte = useNavigate();
-  const filterList  = list.filter(data => data.category === filterValue)
-  const users = useFetchCollection('users');
-  const {currentUser} = useContext(UserContext);
-  const navigate = useNavigate();  
+  const filterList  = list.filter(data => data.category === filterValue) 
   
-  async function addtoWishListHandler(itemId){
-    if(currentUser){
-      const findUser = users.filter(data => data.userEmail === currentUser.email)
-      const wishlist = findUser[0].wishListItems;
-      const docRef = doc(db,'users',findUser[0].id)
-      try {
-        await updateDoc(docRef,{
-          wishListItems: arrayUnion(...wishlist,itemId)
-        })
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    else{
-      navigate('/login');
-    }
-  }
+  const addWishListItem = useAddWishList();
+  const addtoWishListHandler = async (id) => {
+    await addWishListItem(id);}
 
   return (
     <div className="product-list">
