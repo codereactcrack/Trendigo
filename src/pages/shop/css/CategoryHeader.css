@@ -1,0 +1,29 @@
+
+/* Category Header styling */
+.category-header {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(45deg, #ff6b6b, #f06595);
+    /* Vibrant gradient background */
+    padding: 10px 0;
+}
+
+.category-header__item {
+    margin: 0 15px;
+}
+
+.category-header__item a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.category-header__item a.active,
+.category-header__item a:hover {
+    color: #ffe066;
+    /* Bright yellow for hover and active states */
+    transform: scale(1.1);
+    /* Slightly enlarge on hover and active states */
+}

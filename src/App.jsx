@@ -1,6 +1,8 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
 import { Suspense, lazy } from 'react';
+import AllProducts from './component/products/AllProducts';
+import ProductDetails from './component/products/ProductDetails';
 
 const Home = lazy (()=> import('./pages/home/Home'));
 const Shop =lazy(()=> import('./pages/shop/Shop'))  ;
@@ -14,7 +16,7 @@ const Profile = lazy(()=> import ('./pages/profile/Profile'))
 const LoginPage = lazy(()=>import ('./component/Auth/Login/LoginPage' ))
 const RegisterPage = lazy(()=>import ('./component/Auth/Register/RegisterPage'))
 const Terms = lazy(()=>import ('./pages/terms&privacy/Terms'))
-
+const Products = lazy(()=>import('./component/products/Products'))
 function App() {
 
   const router = createBrowserRouter(
@@ -23,8 +25,10 @@ function App() {
         <Route path='/' element={<Template/>}>
           <Route index element ={<Home/>} />
           <Route path='/home' element ={<Home />} />
-          <Route path='shop' element ={<Shop/>} >
-            <Route path=':filterType/:filterValue' element ={<Shop />} />
+          <Route path='shop' element ={<Shop />}>
+            <Route index element ={<AllProducts/>} />
+            <Route path=':productId' element ={<ProductDetails />} />
+            <Route path=':filterType/:filterValue' element ={<Products />} />
           </Route>
           <Route path='about-us' element ={<About/>} />
           <Route path='contact-us' element ={<Contact />} />
