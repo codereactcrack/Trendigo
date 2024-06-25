@@ -41,29 +41,6 @@
     border-bottom: 2px solid #007bff;
 }
 
-.header__search-bar {
-    display: flex;
-    align-items: center;
-    background-color: #f5f5f5;
-    border-radius: 105px;
-    padding: 5px 10px;
-    margin-right: 30px;
-
-}
-
-.header__search-icon {
-    color: #888;
-    margin-right: 10px;
-}
-
-.header__search-input {
-    border: none;
-    background: none;
-    outline: none;
-    padding: 5px;
-    width: 200px;
-}
-
 .header__auth-bar {
     display: flex;
     align-items: center;
