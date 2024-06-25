@@ -2,9 +2,9 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../services/firebase";
 
-const useFetchProduct =()=>{
+const useFetchCollection =(collectionName)=>{
     const [list, setList] = useState([]);
-    const productCollectionRef = collection(db, 'product-list');
+    const productCollectionRef = collection(db, collectionName);
     useEffect(() => {
         const unsub = onSnapshot(productCollectionRef, (snapshot) => {
           const data = snapshot.docs.map((doc) => ({
@@ -21,4 +21,4 @@ const useFetchProduct =()=>{
     return list
 }
 
-export default useFetchProduct;
+export default useFetchCollection;

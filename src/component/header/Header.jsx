@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/images/logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,6 +8,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 import './css/Header.css';
 
 const Header = () => {
+
     const navigate = useNavigate();
   return (
     <header className="header">
