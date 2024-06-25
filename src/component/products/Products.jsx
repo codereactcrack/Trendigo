@@ -10,7 +10,18 @@ const Products = () => {
   const {filterType,filterValue} = useParams();
   const list = useFetchCollection('product-list');
   const naviagte = useNavigate();
-  const filterList  = list.filter(data => data.category === filterValue) 
+  let filterList ;
+
+  if(filterType == 'category'){
+     filterList  = list.filter(data => data.category === filterValue) 
+  }
+if (filterType === 'price') {
+    let values = filterValue.split(',');
+    let intValue1 = parseInt(values[0]);
+    let intValue2 = parseInt(values[1]);
+    
+    filterList = list.filter(data => intValue1 <= data.finalPrice && data.finalPrice < intValue2);
+}
   
   const addWishListItem = useAddWishList();
   const addtoWishListHandler = async (id) => {

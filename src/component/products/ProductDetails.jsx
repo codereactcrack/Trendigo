@@ -18,9 +18,9 @@ const ProductDetails = () => {
   const addtoWishListHandler = async (id) => {
     await addWishListItem(id);}
 
-    const addCartItem = useAddCart();
-    const addtoCartHandler = async (id) => {
-      await addCartItem(id);
+  const addCartItem = useAddCart();
+  const addtoCartHandler = async (id) => {
+    await addCartItem(id);
     };
 
   return (
