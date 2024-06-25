@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Logo from '../../assets/images/logo.png';
 import { NavLink, useNavigate } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import './css/Header.css';
+import SearchBar from './SearchBar';
 
 const Header = () => {
 
@@ -24,8 +24,7 @@ const Header = () => {
         </ul>
       </div>
       <div className="header__search-bar">
-        <SearchIcon className="header__search-icon" />
-        <input type="text" placeholder="Search Item.." className="header__search-input" />
+        <SearchBar />
       </div>
       <div className="header__auth-bar">
         <div className="header__icon">

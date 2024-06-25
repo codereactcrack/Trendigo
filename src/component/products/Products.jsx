@@ -1,19 +1,24 @@
-import React  from 'react'
+import React, { useContext }  from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import useAddWishList from '../../hooks/useAddWishList';
 import useAddCart from '../../hooks/useAddCart';
+import SearchContext from '../../context/Search/SearchContext';
 
 const Products = () => {
   const {filterType,filterValue} = useParams();
   const list = useFetchCollection('product-list');
   const naviagte = useNavigate();
   let filterList ;
+  const {input} = useContext(SearchContext);
 
   if(filterType == 'category'){
      filterList  = list.filter(data => data.category === filterValue) 
+     if(input){
+      filterList = filterList.filter(data => (data.name).toLowerCase().includes(input.toLowerCase()));
+    }
   }
 if (filterType === 'price') {
     let values = filterValue.split(',');
@@ -21,7 +26,11 @@ if (filterType === 'price') {
     let intValue2 = parseInt(values[1]);
     
     filterList = list.filter(data => intValue1 <= data.finalPrice && data.finalPrice < intValue2);
+    if(input){
+      filterList = filterList.filter(data => (data.name).toLowerCase().includes(input.toLowerCase()));
+    }
 }
+
   
   const addWishListItem = useAddWishList();
   const addtoWishListHandler = async (id) => {

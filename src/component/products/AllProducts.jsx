@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import './css/AllProducts.css';
@@ -6,10 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import useAddWishList from '../../hooks/useAddWishList';
 import useAddCart from '../../hooks/useAddCart';
+import SearchContext from '../../context/Search/SearchContext';
 
 const AllProducts = () => {
+
+  const {input} = useContext(SearchContext);
     
-  const list = useFetchCollection('product-list');
+  let list = useFetchCollection('product-list');
   const naviagte = useNavigate();
 
   const addWishListItem = useAddWishList();
@@ -21,6 +24,11 @@ const AllProducts = () => {
   const addtoCartHandler = async (id) => {
     await addCartItem(id);
   };
+
+  if(input){
+    list = list.filter(data => (data.name).toLowerCase().includes(input.toLowerCase()));
+  }
+
 
   return (
     <div className="product-list">
