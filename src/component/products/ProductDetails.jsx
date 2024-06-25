@@ -1,30 +1,15 @@
-import { doc, getDoc } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import { db } from '../../services/firebase';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import './css/ProductDetails.css';
+import useFetchProduct from '../../hooks/useFetchProduct';
 
 const ProductDetails = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const productDocRef = doc(db, 'product-list', productId);
-      const productDocSnap = await getDoc(productDocRef);
-
-      if (productDocSnap.exists()) {
-        setProduct({ id: productDocSnap.id, ...productDocSnap.data() });
-      } else {
-        console.log('No such document!');
-      }
-    };
-
-    fetchProduct();
-  }, [productId]);
-
+  const list = useFetchProduct();
+  const filterList  = list.filter(data => data.id === productId)
+  const product = filterList[0]
   return (
     <div className="product-details">
       {product ? (
