@@ -5,14 +5,21 @@ import './css/AllProducts.css';
 import { useNavigate } from 'react-router-dom';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import useAddWishList from '../../hooks/useAddWishList';
+import useAddCart from '../../hooks/useAddCart';
 
 const AllProducts = () => {
     
   const list = useFetchCollection('product-list');
   const naviagte = useNavigate();
+
   const addWishListItem = useAddWishList();
   const addtoWishListHandler = async (id) => {
     await addWishListItem(id);
+  };
+
+  const addCartItem = useAddCart();
+  const addtoCartHandler = async (id) => {
+    await addCartItem(id);
   };
 
   return (
@@ -32,7 +39,7 @@ const AllProducts = () => {
             </div>
             <div className="product-actions">
               <button className="wishlist-button" onClick={()=>addtoWishListHandler(data.id)}><FavoriteIcon /></button>
-              <button className="cart-button">ADD TO CART <ShoppingCartCheckoutIcon /></button>
+              <button className="cart-button" onClick={()=>addtoCartHandler(data.id)}>ADD TO CART <ShoppingCartCheckoutIcon /></button>
             </div>
           </div>
         </div>

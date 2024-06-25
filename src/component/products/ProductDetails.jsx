@@ -5,6 +5,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import './css/ProductDetails.css';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import useAddWishList from '../../hooks/useAddWishList';
+import useAddCart from '../../hooks/useAddCart';
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -16,6 +17,11 @@ const ProductDetails = () => {
   const addWishListItem = useAddWishList();
   const addtoWishListHandler = async (id) => {
     await addWishListItem(id);}
+
+    const addCartItem = useAddCart();
+    const addtoCartHandler = async (id) => {
+      await addCartItem(id);
+    };
 
   return (
     <div className="product-details">
@@ -45,7 +51,7 @@ const ProductDetails = () => {
             </div>
             <div className="product-details__actions">
               <button className="wishlist-button" onClick={()=>addtoWishListHandler(product.id)}><FavoriteIcon /></button>
-              <button className="cart-button">ADD TO CART <ShoppingCartCheckoutIcon /></button>
+              <button className="cart-button" onClick={()=>addtoCartHandler(product.id)}>ADD TO CART <ShoppingCartCheckoutIcon /></button>
             </div>
           </div>
         </div>
