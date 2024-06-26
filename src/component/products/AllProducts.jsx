@@ -12,7 +12,7 @@ const AllProducts = () => {
 
   const {input} = useContext(SearchContext);
   let list = useFetchCollection('product-list');
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
   const addWishListItem = useAddWishList();
   const addtoWishListHandler = async (id) => {
@@ -28,25 +28,24 @@ const AllProducts = () => {
     list = list.filter(data => (data.name).toLowerCase().includes(input.toLowerCase()));
   }
 
-
   return (
     <div className="product-list">
       {list.map((data) => (
-        <div key={data.id} className="product-card" >
-          <div className="product-image" onClick={()=>naviagte(`/shop/${data.id}`)}>
+        <div key={data.id} className="product-card" onClick={() => navigate(`/shop/${data.id}`)}>
+          <div className="product-image">
             <img src={data.images[0]} alt="Product" />
           </div>
           <div className="product-info">
             <h2 className="product-name">{data.name}</h2>
             <div className="product-brand">{data.brand}</div>
             <div className="product-price">
-              <span>PRICE: ${data.price}</span>
+              <span>Price: ${data.price}</span>
               <span>Discount: {data.discount}%</span>
               <span>Discounted Price: ${data.price - (data.price * data.discount) / 100}</span>
             </div>
             <div className="product-actions">
-              <button className="wishlist-button" onClick={()=>addtoWishListHandler(data.id)}><FavoriteIcon /></button>
-              <button className="cart-button" onClick={()=>addtoCartHandler(data.id)}>ADD TO CART <ShoppingCartCheckoutIcon /></button>
+              <button className="wishlist-button" onClick={(e) => { e.stopPropagation(); addtoWishListHandler(data.id); }}><FavoriteIcon /></button>
+              <button className="cart-button" onClick={(e) => { e.stopPropagation(); addtoCartHandler(data.id); }}>Add to Cart <ShoppingCartCheckoutIcon /></button>
             </div>
           </div>
         </div>

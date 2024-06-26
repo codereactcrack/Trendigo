@@ -9,27 +9,28 @@ import useAddCart from '../../hooks/useAddCart';
 
 const ProductDetails = () => {
   const { productId } = useParams();
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   const list = useFetchCollection('product-list');
-  const filterList  = list.filter(data => data.id === productId)
-  const product = filterList[0]
+  const filterList = list.filter(data => data.id === productId);
+  const product = filterList[0];
 
   const addWishListItem = useAddWishList();
-  const addtoWishListHandler = async (id) => {
-    await addWishListItem(id);}
+  const addToWishListHandler = async (id) => {
+    await addWishListItem(id);
+  };
 
   const addCartItem = useAddCart();
-  const addtoCartHandler = async (id) => {
+  const addToCartHandler = async (id) => {
     await addCartItem(id);
-    };
+  };
 
   return (
     <div className="product-details">
       {product ? (
-        <div className="product-details__container" >
-          <div className="product-details__images" onClick={()=>naviagte(`/shop/${product.id}`)}>
+        <div className="product-details__container">
+          <div className="product-details__images" onClick={() => navigate(`/shop/${product.id}`)}>
             {product.images && product.images.map((image, index) => (
-              <img key={index} src={image} alt={`Product image ${index + 1}`} />
+              <img key={index} src={image} alt={`Product image ${index + 1}`} className="product-image"/>
             ))}
           </div>
           <div className="product-details__info">
@@ -37,21 +38,25 @@ const ProductDetails = () => {
             <h3 className="product-details__brand">{product.brand}</h3>
             <p className="product-details__description">{product.description}</p>
             <div className="product-details__price">
-              <span>Price: ${product.price}</span>
-              <span>Discount: {product.discount}%</span>
-              <span>Discounted Price: ${product.price - (product.price * product.discount) / 100}</span>
+              <span className="price">${product.price}</span>
+              <span className="discount">{product.discount}% OFF</span>
+              <span className="discounted-price">${(product.price - (product.price * product.discount) / 100).toFixed(2)}</span>
             </div>
             <div className="product-details__specifications">
               <h3>Specifications:</h3>
               <ul>
-                {product.specifications && product.specifications.map((spec, index) => (
+                {product.specification && product.specification.map((spec, index) => (
                   <li key={index}>{spec}</li>
                 ))}
               </ul>
             </div>
             <div className="product-details__actions">
-              <button className="wishlist-button" onClick={()=>addtoWishListHandler(product.id)}><FavoriteIcon /></button>
-              <button className="cart-button" onClick={()=>addtoCartHandler(product.id)}>ADD TO CART <ShoppingCartCheckoutIcon /></button>
+              <button className="wishlist-button" onClick={() => addToWishListHandler(product.id)}>
+                <FavoriteIcon /> Add to Wishlist
+              </button>
+              <button className="cart-button" onClick={() => addToCartHandler(product.id)}>
+                <ShoppingCartCheckoutIcon /> Add to Cart
+              </button>
             </div>
           </div>
         </div>

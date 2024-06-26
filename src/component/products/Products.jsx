@@ -6,6 +6,7 @@ import useFetchCollection from '../../hooks/useFetchCollection';
 import useAddWishList from '../../hooks/useAddWishList';
 import useAddCart from '../../hooks/useAddCart';
 import SearchContext from '../../context/Search/SearchContext';
+import './css/AllProducts.css'
 
 const Products = () => {
   const {filterType,filterValue} = useParams();
