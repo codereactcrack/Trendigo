@@ -20,7 +20,8 @@ const FilterSidebar = () => {
             <div className='filter-heading'>Filter BY</div>
             <div className='filter-section'>
                 <div className='filter-subheading'>
-                    Price <button onClick={()=>naviagte(`/shop/price/${value[0]},${value[1]}`)}>Apply</button>
+                    <span className='filter-name'> Price</span> 
+                    <button onClick={()=>naviagte(`/shop/price/${value[0]},${value[1]}`)}>Apply</button>
                 </div>
                 <Slider
                     getAriaLabel={() => 'Price range'}

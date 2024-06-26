@@ -1,14 +1,16 @@
-
-/* Filter Sidebar styling */
+/* Filter sidebar container */
 .filter-sidebar {
-    width: 250px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    background-color: #f9f9f9;
     padding: 20px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
 }
 
+/* Filter heading */
 .filter-heading {
     font-size: 20px;
     font-weight: bold;
@@ -17,15 +19,46 @@
     text-align: center;
 }
 
+/* Individual filter section */
 .filter-section {
     margin-bottom: 20px;
 }
 
+/* Filter subheading container */
 .filter-subheading {
-    font-size: 16px;
-    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+    font-size: 16px;
     color: #555;
 }
 
-/* Add more specific styling for filter options here */
+/* Filter name */
+.filter-name {
+    font-weight: bold;
+}
+
+/* Apply button */
+.filter-subheading button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.filter-subheading button:hover {
+    background-color: #0056b3;
+}
+
+/* Price display */
+.price-display {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}

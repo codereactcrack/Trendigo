@@ -38,8 +38,8 @@ function App() {
           <Route path='contact-us' element ={<Contact />} />
           <Route path='cart' element ={<ProtectedRoute element={<Cart /> } />}/>
           <Route path='wishlist' element ={ <ProtectedRoute element={<Wishlist />} />} />
-          <Route path='/profile' element ={<Profile/>} />
-          <Route path='/terms' element ={<Terms/>} />
+          <Route path='profile' element ={<Profile/>} />
+          <Route path='terms' element ={<Terms/>} />
         </Route>
         <Route path='login' element ={<LoginPage />}/>
         <Route path='sign-up' element ={<RegisterPage />}/>
