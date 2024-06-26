@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import UserContext from '../../context/AuthContext/UserContext';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import { doc, updateDoc } from 'firebase/firestore';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,6 +44,20 @@ const Wishlist = () => {
     }
   };
 
+  const addtoCartHandler =async (productid) => {
+    const cartList = findUser.cartItems;
+    const docRef = doc(db, 'users', findUser.id);
+    try {
+      await updateDoc(docRef, {
+        cartItems: arrayUnion(...cartList,productid)
+      });
+      toast.success('Added to Cart')
+    } catch (error) {
+      toast.error('Error in adding item from cart')
+      console.error('Error in adding item from cart ', error);
+    }
+  };
+
   return (
     <div>
       <h2>Wishlist</h2>
@@ -65,7 +79,7 @@ const Wishlist = () => {
                 <button className="wishlist-remove-button" onClick={() => removeWishListHandler(data.id)}>
                   REMOVE
                 </button>
-                <button className="cart-button">
+                <button className="cart-button" onClick={() => addtoCartHandler(data.id)}>
                   ADD TO CART 
                 <ShoppingCartCheckoutIcon />
                 </button>
