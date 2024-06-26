@@ -16,12 +16,14 @@
     overflow: hidden;
     border-radius: 10px;
 }
-.login-left-banner img{
+
+.login-left-banner img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
 }
-.login-left-banner img:hover{
+
+.login-left-banner img:hover {
     transform: scale(1.05);
 }
 
@@ -77,6 +79,25 @@
 .slogan {
     font-size: 16px;
     color: #666666;
+}
+
+/* Back button styling */
+.back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Email authentication section */

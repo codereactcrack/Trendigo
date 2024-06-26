@@ -7,6 +7,7 @@ import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 
 import './css/Wishlist.css'
+import toast from 'react-hot-toast';
 
 const Wishlist = () => {
   const productList = useFetchCollection('product-list');
@@ -36,7 +37,9 @@ const Wishlist = () => {
       await updateDoc(docRef, {
         wishListItems: updatedWishlist
       });
+      toast.success('Removed from WishList')
     } catch (error) {
+      toast.error('Error removing item from wishlist')
       console.error('Error removing item from wishlist: ', error);
     }
   };
@@ -63,7 +66,8 @@ const Wishlist = () => {
                   REMOVE
                 </button>
                 <button className="cart-button">
-                  ADD TO CART <ShoppingCartCheckoutIcon />
+                  ADD TO CART 
+                <ShoppingCartCheckoutIcon />
                 </button>
               </div>
             </div>

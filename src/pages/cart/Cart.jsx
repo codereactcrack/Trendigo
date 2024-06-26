@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import UserContext from '../../context/AuthContext/UserContext';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import './css/Cart.css'
-import useAddWishList from '../../hooks/useAddWishList';
+import toast from 'react-hot-toast';
 
 const Cart = () => {
   const productList = useFetchCollection('product-list');
@@ -32,13 +30,14 @@ const Cart = () => {
     const cartlist = findUser.cartItems;
     const updatedCartlist = cartlist.filter(data => data !== productid);
     const docRef = doc(db, 'users', findUser.id);
-
     try {
       await updateDoc(docRef, {
         cartItems: updatedCartlist
       });
+      toast.success('Removed from Cart')
     } catch (error) {
-      console.error('Error removing item from wishlist: ', error);
+      toast.error('Error removing item from Cart')
+      console.error('Error removing item from Cart: ', error);
     }
   };
 

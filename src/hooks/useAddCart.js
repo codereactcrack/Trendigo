@@ -4,6 +4,7 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import UserContext from "../context/AuthContext/UserContext";
 import useFetchCollection from "./useFetchCollection";
+import toast from "react-hot-toast";
 
 const useAddCart = () => {
   const users = useFetchCollection('users');
@@ -13,6 +14,7 @@ const useAddCart = () => {
   const cartItem = async (itemId) => {
     if (!users || !currentUser) {
       navigate('/login');
+      return
     };
     const findUser = users.find(data => data.userEmail === currentUser.email);
     if (findUser) {
@@ -21,9 +23,11 @@ const useAddCart = () => {
         await updateDoc(docRef, {
             cartItems: arrayUnion(itemId)
         });
-        alert('Added to Cart')
+        toast.success('Added to Cart');
       } catch (error) {
-        console.error('Error adding item to wishlist: ', error);
+        toast.error('Error in adding item to cart')
+        console.error('Error adding item to cart: ', error);
+        return
       }
     } else {
       navigate('/login');

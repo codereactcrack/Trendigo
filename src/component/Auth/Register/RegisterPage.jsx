@@ -8,6 +8,7 @@ import './css/RegisterPage.css'
 import Banner2 from '../../../assets/images/banner2.jpg'
 import SendIcon from '@mui/icons-material/Send';
 import Logo from '../../../assets/images/logo.png'
+import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -22,11 +23,12 @@ const RegisterPage = () => {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser,{ displayName:userName })
       await sendEmailVerification(auth.currentUser);
-      alert('A verification email has been sent to your email address. Please verify your email before logging in.');
+      toast.success('A verification email has been sent to your email address.')
+      toast.success('Please verify your email before logging in.');
       setCurrentUser(null); 
       navigate('/login');
     } catch (error) {
-      alert(error.message)
+      toast.error(error.message)
       console.error(error.message);
     }
   };
@@ -75,7 +77,7 @@ const RegisterPage = () => {
             REGISTER USER
             <SendIcon className='send-icon' />
           </button>
-            <button onClick={()=>{navigate('/')}}>BACK</button>
+            <button onClick={()=>{navigate('/')}} className='back-button'>BACK</button>
         </form>
       </div>
       <div className='register-right-banner'>

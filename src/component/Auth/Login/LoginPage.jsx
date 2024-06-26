@@ -23,7 +23,11 @@ const LoginPage = () => {
           <div className='heading'>
             <div className='primary-heading'>TrendiGO</div>
             <div className='slogan'>Get Ready to Blab and Laugh!</div>
-            <div><button onClick={()=>navigate('/home')}> BACK</button></div>
+            <div>
+              <button onClick={()=>navigate('/home')} className='back-button'> 
+                  BACK
+              </button>
+            </div>
           </div>
         </div>
         <div className='email-auth'>

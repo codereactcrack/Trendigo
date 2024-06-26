@@ -4,6 +4,7 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import UserContext from "../context/AuthContext/UserContext";
 import useFetchCollection from "./useFetchCollection";
+import toast from "react-hot-toast";
 
 const useAddWishList = () => {
   const users = useFetchCollection('users');
@@ -13,6 +14,7 @@ const useAddWishList = () => {
   const addWishListItem = async (itemId) => {
     if (!users || !currentUser) {
       navigate('/login');
+      return
     };
     const findUser = users.find(data => data.userEmail === currentUser.email);
     if (findUser) {
@@ -21,12 +23,14 @@ const useAddWishList = () => {
         await updateDoc(docRef, {
           wishListItems: arrayUnion(itemId)
         });
-        alert('Added to wishlist')
+        toast.success('Added to wishlist');
       } catch (error) {
+        toast.error('Error in adding item to wishlist')
         console.error('Error adding item to wishlist: ', error);
       }
     } else {
       navigate('/login');
+      return
     }
   };
 

@@ -7,11 +7,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import './css/LoginEmail.css';
 import UserContext from '../../../context/AuthContext/UserContext';
 import useAddUserDb from '../../../hooks/useAddUserDb';
+import toast from 'react-hot-toast';
 
 const LoginEmail = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const {currentUser,setCurrentUser} = useContext(UserContext);
+  
+  const {setCurrentUser} = useContext(UserContext);
   async function onSubmit(data) {
     const { email, password } = data;
     try {
@@ -20,13 +22,15 @@ const LoginEmail = () => {
         setCurrentUser(userInfo.user);
         await useAddUserDb(userInfo);
         navigate('/profile');
+        toast.success(`Welcome! ${userInfo.user.displayName}`)
       }
       else{
-        alert('Please Verify Your Email');
+        toast.error('Please Verify Your Email')
         navigate('/login')
       }
     } catch (error) {
-      alert(error.message)
+      console.log(error.message)
+      toast.error('Invalid credential')
     }
   }
 

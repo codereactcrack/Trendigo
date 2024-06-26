@@ -19,6 +19,8 @@ const AllProducts = lazy(()=>import ('./component/products/AllProducts'))
 const ProductDetails = lazy(()=>import ('./component/products/ProductDetails'))
 
 
+import toast, { Toaster } from 'react-hot-toast';
+
 function App() {
 
   const router = createBrowserRouter(
@@ -48,6 +50,7 @@ function App() {
     <>
     <Suspense fallback={<h1>Loading.....</h1>} >
       <RouterProvider router={router} />
+      <Toaster  position="top-right" reverseOrder={true}/>
     </Suspense>
     </>
   )

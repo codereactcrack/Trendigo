@@ -7,6 +7,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import './css/LoginGoogle.css'
 
 import useAddUserDb from '../../../hooks/useAddUserDb'
+import toast from 'react-hot-toast'
 
 const LoginGoogle = () => {
 
@@ -19,9 +20,10 @@ const LoginGoogle = () => {
       setCurrentUser(userAuth.user);
       await useAddUserDb(userAuth);
       navigate('/profile');
+      toast.success(`Welcome! ${userAuth.user.displayName}`)
     } catch (error) {
-      alert(error.message)
-      console.log(error.message); 
+      console.log(error.message)
+      toast.error('Please Try Again')
     }
   }
 
