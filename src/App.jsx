@@ -1,8 +1,6 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
 import { Suspense, lazy } from 'react';
-import AllProducts from './component/products/AllProducts';
-import ProductDetails from './component/products/ProductDetails';
 
 const Home = lazy (()=> import('./pages/home/Home'));
 const Shop =lazy(()=> import('./pages/shop/Shop'))  ;
@@ -17,6 +15,10 @@ const LoginPage = lazy(()=>import ('./component/Auth/Login/LoginPage' ))
 const RegisterPage = lazy(()=>import ('./component/Auth/Register/RegisterPage'))
 const Terms = lazy(()=>import ('./pages/terms&privacy/Terms'))
 const Products = lazy(()=>import('./component/products/Products'))
+const AllProducts = lazy(()=>import ('./component/products/AllProducts'))
+const ProductDetails = lazy(()=>import ('./component/products/ProductDetails'))
+
+
 function App() {
 
   const router = createBrowserRouter(

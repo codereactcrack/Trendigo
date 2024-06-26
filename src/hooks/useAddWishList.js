@@ -11,7 +11,9 @@ const useAddWishList = () => {
   const navigate = useNavigate();
 
   const addWishListItem = async (itemId) => {
-    if (!users || !currentUser) return;
+    if (!users || !currentUser) {
+      navigate('/login');
+    };
     const findUser = users.find(data => data.userEmail === currentUser.email);
     if (findUser) {
       const docRef = doc(db, 'users', findUser.id);

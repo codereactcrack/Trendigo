@@ -11,7 +11,6 @@ import SearchContext from '../../context/Search/SearchContext';
 const AllProducts = () => {
 
   const {input} = useContext(SearchContext);
-    
   let list = useFetchCollection('product-list');
   const naviagte = useNavigate();
 
