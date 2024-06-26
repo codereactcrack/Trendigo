@@ -5,9 +5,10 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
-
+import '../../component/products/css/AllProducts.css';
 import './css/Wishlist.css'
 import toast from 'react-hot-toast';
+
 
 const Wishlist = () => {
   const productList = useFetchCollection('product-list');
@@ -60,23 +61,23 @@ const Wishlist = () => {
 
   return (
     <div>
-      <h2>Wishlist</h2>
-      <div className="wishlist-container">
+      <div className='wishlist-heading'>Wishlist</div>
+      <div className="product-list">
         {wishListItems.map(data => (
-          <div key={data.id} className="wishlist-product-card">
-            <div className="wishlist-product-image" onClick={() => navigate(`/shop/${data.id}`)}>
+          <div key={data.id} className="product-card">
+            <div className="product-image" onClick={() => navigate(`/shop/${data.id}`)}>
               <img src={data.images[0]} alt="Product" />
             </div>
-            <div className="wishlist-product-info">
-              <h2 className="wishlist-product-name">{data.name}</h2>
-              <div className="wishlist-product-brand">{data.brand}</div>
-              <div className="wishlist-product-price">
+            <div className="product-info">
+              <h2 className="product-name">{data.name}</h2>
+              <div className="product-brand">{data.brand}</div>
+              <div className="product-price">
                 <span>PRICE: ${data.price}</span>
                 <span>Discount: {data.discount}%</span>
                 <span>Discounted Price: ${data.price - (data.price * data.discount) / 100}</span>
               </div>
-              <div className="wishlist-product-actions">
-                <button className="wishlist-remove-button" onClick={() => removeWishListHandler(data.id)}>
+              <div className="product-actions">
+                <button className="remove-button" onClick={() => removeWishListHandler(data.id)}>
                   REMOVE
                 </button>
                 <button className="cart-button" onClick={() => addtoCartHandler(data.id)}>
