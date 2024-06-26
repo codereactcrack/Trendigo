@@ -4,7 +4,7 @@ import UserContext from '../../context/AuthContext/UserContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
-import './css/Cart.css'
+import './css/Cart.css';
 import toast from 'react-hot-toast';
 
 const Cart = () => {
@@ -26,45 +26,47 @@ const Cart = () => {
     findUser.cartItems.includes(product.id)
   );
 
-  const removeCartHandler = async (productid) => {
-    const cartlist = findUser.cartItems;
-    const updatedCartlist = cartlist.filter(data => data !== productid);
+  const removeCartHandler = async (productId) => {
+    const cartList = findUser.cartItems;
+    const updatedCartList = cartList.filter(data => data !== productId);
     const docRef = doc(db, 'users', findUser.id);
     try {
       await updateDoc(docRef, {
-        cartItems: updatedCartlist
+        cartItems: updatedCartList
       });
-      toast.success('Removed from Cart')
+      toast.success('Removed from Cart');
     } catch (error) {
-      toast.error('Error removing item from Cart')
+      toast.error('Error removing item from Cart');
       console.error('Error removing item from Cart: ', error);
     }
   };
 
-
   return (
-    <div>
-      <h2>CART</h2>
-      <div className="wishlist-container">
+    <div className='cart-page'>
+      <div className='cart-heading'>Cart</div>
+      <div className='cart-container'>
         {cartItems.map(data => (
-          <div key={data.id} className="wishlist-product-card">
-            <div className="wishlist-product-image" onClick={() => navigate(`/shop/${data.id}`)}>
-              <img src={data.images[0]} alt="Product" />
+          <div key={data.id} className='cart-product-card'>
+            <div className='cart-product-image' onClick={() => navigate(`/shop/${data.id}`)}>
+              <img src={data.images[0]} alt='Product' />
             </div>
-            <div className="wishlist-product-info">
-              <h2 className="wishlist-product-name">{data.name}</h2>
-              <div className="wishlist-product-brand">{data.brand}</div>
-              <div className="wishlist-product-price">
-                <span>PRICE: ${data.price}</span>
+            <div className='cart-product-info'>
+              <h2 className='cart-product-name'>{data.name}</h2>
+              <div className='cart-product-brand'>{data.brand}</div>
+              <div className='cart-product-price'>
+                <span>Price: ${data.price}</span>
                 <span>Discount: {data.discount}%</span>
-                <span>Discounted Price: ${data.price - (data.price * data.discount) / 100}</span>
+                <span>Discounted Price: ${data.finalPrice}</span>
               </div>
-              <div className="wishlist-product-actions">
-                <button className="cart-button" onClick={()=>removeCartHandler(data.id)}>Remove From Cart</button>
+              <div className='cart-product-actions'>
+                <button className='remove-button' onClick={() => removeCartHandler(data.id)}>Remove From Cart</button>
               </div>
             </div>
           </div>
         ))}
+      </div>
+      <div className='price section'>
+
       </div>
     </div>
   );
