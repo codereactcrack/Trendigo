@@ -4,6 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly; /* Distribute space between cards */
+    margin: 2rem;
   }
   
   .static-card {
