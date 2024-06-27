@@ -31,6 +31,13 @@ if (filterType === 'price') {
       filterList = filterList.filter(data => (data.name).toLowerCase().includes(input.toLowerCase()));
     }
 }
+if (filterType === 'brand') {
+  filterList  = list.filter(data => data.brand === filterValue) 
+  if(input){
+    filterList = filterList.filter(data => (data.name).toLowerCase().includes(input.toLowerCase()));
+  }
+}
+
 
   
   const addWishListItem = useAddWishList();

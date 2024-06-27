@@ -2,6 +2,7 @@ import React from 'react';
 import './css/FilterSidebar.css';
 import Slider from '@mui/material/Slider';
 import { useNavigate } from 'react-router-dom';
+import FilterByBrand from './Filter/FilterByBrand';
 
 const FilterSidebar = () => {
     const [value, setValue] = React.useState([0, 100000]);
@@ -17,7 +18,10 @@ const FilterSidebar = () => {
 
     return (
         <div className='filter-sidebar'>
-            <div className='filter-heading'>Filter BY</div>
+            <div className='filter-heading'>
+                Filter BY 
+                <button onClick={()=>naviagte('/shop')}>Reset</button>
+            </div>
             <div className='filter-section'>
                 <div className='filter-subheading'>
                     <span className='filter-name'> Price</span> 
@@ -37,8 +41,7 @@ const FilterSidebar = () => {
                 </div>
             </div>
             <div className='filter-section'>
-                <div className='filter-subheading'>Brand</div>
-                {/* Brand filter options will go here */}
+                <FilterByBrand />
             </div>
         </div>
     );
