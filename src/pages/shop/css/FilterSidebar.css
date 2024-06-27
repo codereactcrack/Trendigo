@@ -2,7 +2,7 @@
 .filter-sidebar {
     display: flex;
     flex-direction: column;
-    width: 650px;
+    width: 250px;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
@@ -17,6 +17,9 @@
     margin-bottom: 20px;
     color: #333;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Individual filter section */
@@ -61,4 +64,23 @@
     font-size: 14px;
     color: #666;
     margin-top: 10px;
+}
+
+/* Reset button */
+.reset-button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.reset-button:hover {
+    background-color: #d9363e;
 }

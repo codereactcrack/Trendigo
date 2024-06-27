@@ -3,6 +3,7 @@ import './css/FilterSidebar.css';
 import Slider from '@mui/material/Slider';
 import { useNavigate } from 'react-router-dom';
 import FilterByBrand from './Filter/FilterByBrand';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const FilterSidebar = () => {
     const [value, setValue] = React.useState([0, 100000]);
@@ -20,7 +21,7 @@ const FilterSidebar = () => {
         <div className='filter-sidebar'>
             <div className='filter-heading'>
                 Filter BY 
-                <button onClick={()=>naviagte('/shop')}>Reset</button>
+                <button onClick={()=>naviagte('/shop')} className='reset-button'><RestartAltIcon/></button>
             </div>
             <div className='filter-section'>
                 <div className='filter-subheading'>
