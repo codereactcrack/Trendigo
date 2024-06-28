@@ -37,7 +37,7 @@ const ProductDetails = () => {
         <div className="product-details__container">
           <div className="product-details__images" onClick={() => navigate(`/shop/${product.id}`)}>
             {product.images && product.images.map((image, index) => (
-              <img key={index} src={image} alt={`Product image ${index + 1}`} className="product-image"/>
+              <img key={index} src={image} alt={`Product image ₹{index + 1}`} className="product-image"/>
             ))}
           </div>
           <div className="product-details__info">
@@ -45,9 +45,9 @@ const ProductDetails = () => {
             <h3 className="product-details__brand">{product.brand}</h3>
             <p className="product-details__description">{product.description}</p>
             <div className="product-details__price">
-              <span className="price">${product.price}</span>
+              <span className="price">₹{product.price}</span>
               <span className="discount">{product.discount}% OFF</span>
-              <span className="discounted-price">${(product.price - (product.price * product.discount) / 100).toFixed(2)}</span>
+              <span className="discounted-price">₹{(product.price - (product.price * product.discount) / 100).toFixed(2)}</span>
             </div>
             <div className="product-details__specifications">
               <h3>Specifications:</h3>

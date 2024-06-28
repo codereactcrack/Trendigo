@@ -66,9 +66,9 @@ const Products = () => {
           <h2 className="product-name">{data.name}</h2>
           <div className="product-brand">{data.brand}</div>
           <div className="product-price">
-            <span>PRICE: ${data.price}</span>
+            <span>PRICE: ₹{data.price}</span>
             <span>Discount: {data.discount}%</span>
-            <span>Discounted Price: ${data.price - (data.price * data.discount) / 100}</span>
+            <span>Discounted Price: ₹{data.price - (data.price * data.discount) / 100}</span>
           </div>
           <div className="product-actions">
             <button className="wishlist-button" onClick={(e)=> {e.stopPropagation() ; addtoWishListHandler(data.id)}}>
