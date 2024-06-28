@@ -50,7 +50,7 @@ const CartPrice = (props) => {
         <span className='price-details-label'>TOTAL AMOUNT:</span>
         <span className='price-details-value'>₹{totalAmount}</span>
       </div>
-      <button className='place-order-button'>PLACE ORDER</button>
+      <button className='place-order-button' >PLACE ORDER</button>
     </div>
   );
 };
