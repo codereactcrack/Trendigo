@@ -79,3 +79,8 @@
     background-color: #d9363e;
   }
   
+  .cart-box{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }

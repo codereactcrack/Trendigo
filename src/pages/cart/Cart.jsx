@@ -6,6 +6,7 @@ import { db } from '../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 import './css/Cart.css';
 import toast from 'react-hot-toast';
+import CartPrice from './CartPrice';
 
 const Cart = () => {
   const productList = useFetchCollection('product-list');
@@ -44,29 +45,31 @@ const Cart = () => {
   return (
     <div className='cart-page'>
       <div className='cart-heading'>Cart</div>
-      <div className='cart-container'>
-        {cartItems.map(data => (
-          <div key={data.id} className='cart-product-card'>
-            <div className='cart-product-image' onClick={() => navigate(`/shop/${data.id}`)}>
-              <img src={data.images[0]} alt='Product' />
-            </div>
-            <div className='cart-product-info'>
-              <h2 className='cart-product-name'>{data.name}</h2>
-              <div className='cart-product-brand'>{data.brand}</div>
-              <div className='cart-product-price'>
-                <span>Price: ${data.price}</span>
-                <span>Discount: {data.discount}%</span>
-                <span>Discounted Price: ${data.finalPrice}</span>
+      <div className='cart-box'>
+        <div className='cart-container'>
+          {cartItems.map(data => (
+            <div key={data.id} className='cart-product-card'>
+              <div className='cart-product-image' onClick={() => navigate(`/shop/${data.id}`)}>
+                <img src={data.images[0]} alt='Product' />
               </div>
-              <div className='cart-product-actions'>
-                <button className='remove-button' onClick={() => removeCartHandler(data.id)}>Remove From Cart</button>
+              <div className='cart-product-info'>
+                <h2 className='cart-product-name'>{data.name}</h2>
+                <div className='cart-product-brand'>{data.brand}</div>
+                <div className='cart-product-price'>
+                  <span>Price: ${data.price}</span>
+                  <span>Discount: {data.discount}%</span>
+                  <span>Discounted Price: ${data.finalPrice}</span>
+                </div>
+                <div className='cart-product-actions'>
+                  <button className='remove-button' onClick={() => removeCartHandler(data.id)}>Remove From Cart</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className='price section'>
-
+          ))}
+        </div>
+        <div className='price section'>
+          <CartPrice cartValue={cartItems}/>
+        </div>
       </div>
     </div>
   );
