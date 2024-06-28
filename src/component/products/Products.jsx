@@ -52,8 +52,8 @@ if (filterType === 'brand') {
   return (
     <div className="product-list">
     {filterList.map((data) => (
-      <div key={data.id} className="product-card" >
-        <div className="product-image" onClick={()=>naviagte(`/shop/${data.id}`)}>
+      <div key={data.id} className="product-card" onClick={()=>naviagte(`/shop/${data.id}`)}>
+        <div className="product-image">
           <img src={data.images[0]} alt="Product" />
         </div>
         <div className="product-info">
@@ -65,8 +65,8 @@ if (filterType === 'brand') {
             <span>Discounted Price: ${data.price - (data.price * data.discount) / 100}</span>
           </div>
           <div className="product-actions">
-            <button className="wishlist-button" onClick={()=>addtoWishListHandler(data.id)}><FavoriteIcon /></button>
-            <button className="cart-button" onClick={()=>addtoCartHandler(data.id)}>ADD TO CART <ShoppingCartCheckoutIcon /></button>
+            <button className="wishlist-button" onClick={(e)=> {e.stopPropagation() ; addtoWishListHandler(data.id)}}><FavoriteIcon /></button>
+            <button className="cart-button" onClick={(e)=> {e.stopPropagation() ;addtoCartHandler(data.id)}}>ADD TO CART <ShoppingCartCheckoutIcon /></button>
           </div>
         </div>
       </div>
