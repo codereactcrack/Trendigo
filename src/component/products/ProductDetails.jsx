@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
@@ -6,13 +6,20 @@ import './css/ProductDetails.css';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import useAddWishList from '../../hooks/useAddWishList';
 import useAddCart from '../../hooks/useAddCart';
+import UserContext from '../../context/AuthContext/UserContext';
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const list = useFetchCollection('product-list');
+  const userList = useFetchCollection('users');
+  const { currentUser } = useContext(UserContext);
   const filterList = list.filter(data => data.id === productId);
   const product = filterList[0];
+
+    // Finding the current user's wishlist
+    const user = userList.find(user => user.userEmail === currentUser.email);
+    const wishlist = user ? user.wishListItems : [];
 
   const addWishListItem = useAddWishList();
   const addToWishListHandler = async (id) => {
@@ -51,8 +58,8 @@ const ProductDetails = () => {
               </ul>
             </div>
             <div className="product-details__actions">
-              <button className="wishlist-button" onClick={() => addToWishListHandler(product.id)}>
-                <FavoriteIcon /> Add to Wishlist
+            <button  className="wishlist-button"  onClick={(e) => { e.stopPropagation(); addToWishListHandler(product.id); }}>
+                <FavoriteIcon style={{ color: wishlist.includes(product.id) ? 'red' : '#4287f5' }} />
               </button>
               <button className="cart-button" onClick={() => addToCartHandler(product.id)}>
                 <ShoppingCartCheckoutIcon /> Add to Cart

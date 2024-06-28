@@ -87,17 +87,17 @@
 
 /* Wishlist button */
 .wishlist-button {
-  background-color: #ff6f61;
-  color: #fff;
+  background-color: transparent;
+  color: #4287f5;
   border: none;
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: color 0.3s;
 }
 
 .wishlist-button:hover {
-  background-color: #ff5a4d;
+  color: #ff5a4d;
 }
 
 /* Cart button */

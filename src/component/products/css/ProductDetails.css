@@ -103,8 +103,13 @@
 }
 
 .wishlist-button {
-  background-color: #ff4081;
-  color: #fff;
+  background-color: transparent;
+  color: #4287f5;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
 .cart-button {
