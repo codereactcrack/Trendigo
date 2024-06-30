@@ -12,6 +12,7 @@ const useAddUserDb = async (userAuth) => {
             userName: userAuth.user.displayName,
             userEmail: userAuth.user.email,
             profilePhoto: userAuth.user.photoURL,
+            type:'buyer',
             wishListItems: [],
             cartItems: []
         });

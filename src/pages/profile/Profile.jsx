@@ -5,11 +5,11 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../services/firebase';
 import './css/Profile.css';
 import LoginIcon from '@mui/icons-material/Login';
+import ProfileType from './ProfileType';
 
 const Profile = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
-
   function logoutHandler() {
     signOut(auth).then(() => {
       localStorage.clear();
@@ -26,6 +26,7 @@ const Profile = () => {
         <div className='profile-details'>
           <h2 className='profile-heading'>Profile</h2>
           <p className='profile-name'>Name: {currentUser.displayName}</p>
+          <div><ProfileType /></div>
           <button className='profile-logout-button' onClick={logoutHandler}>LOGOUT</button>
           <div className='order-history'>
             <h3 className='order-history-heading'>Order History</h3>

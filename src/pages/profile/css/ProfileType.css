@@ -1,0 +1,77 @@
+.profile-type-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .profile-type-prompt {
+    display: inline-block;
+  }
+  
+  .profile-type-text {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-type-yes-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-type-yes-button:hover {
+    background-color: #45a049;
+  }
+  
+  .profile-type-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    text-align: center;
+  }
+  
+  .profile-type-confirmation-text {
+    margin-bottom: 20px;
+  }
+  
+  .profile-type-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile-type-no-button {
+    padding: 10px 20px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-type-no-button:hover {
+    background-color: #d9363e;
+  }
+  
+  .profile-type-confirm-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-type-confirm-button:hover {
+    background-color: #45a049;
+  }
+  
