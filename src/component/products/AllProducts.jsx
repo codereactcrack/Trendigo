@@ -30,7 +30,10 @@ const AllProducts = () => {
   const filteredList = input ? list.filter(data => data.name.toLowerCase().includes(input.toLowerCase())) : list;
 
   // Finding the current user's wishlist
-  const user = userList.find(user => user.userEmail === currentUser.email);
+  let user ='';
+  if(currentUser) {
+    user = userList.find(user => user.userEmail === currentUser.email);
+  }
   const wishlist = user ? user.wishListItems : [];
 
   return (

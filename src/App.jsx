@@ -37,7 +37,7 @@ function App() {
           </Route>
           <Route path='about-us' element ={<About/>} />
           <Route path='contact-us' element ={<Contact />} />
-          <Route path='product-list' element = {<ProductList />} />
+          <Route path='product-list' element = {<ProtectedRoute element={<ProductList />} />} />
           <Route path='cart' element ={<ProtectedRoute element={<Cart /> } />}/>
           <Route path='wishlist' element ={ <ProtectedRoute element={<Wishlist />} />} />
           <Route path='profile' element ={<Profile/>} />

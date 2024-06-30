@@ -27,9 +27,12 @@ const FeaturedProduct = () => {
     await addCartItem(id);
   };
 
-    // Finding the current user's wishlist
-    const user = userList.find(user => user.userEmail === currentUser.email);
-    const wishlist = user ? user.wishListItems : [];
+  // Finding the current user's wishlist
+  let user ='';
+  if(currentUser) {
+    user = userList.find(user => user.userEmail === currentUser.email);
+  }
+  const wishlist = user ? user.wishListItems : [];
 
   return (
     <div>

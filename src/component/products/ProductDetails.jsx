@@ -18,7 +18,10 @@ const ProductDetails = () => {
   const product = filterList[0];
 
     // Finding the current user's wishlist
-    const user = userList.find(user => user.userEmail === currentUser.email);
+    let user ='';
+    if(currentUser) {
+      user = userList.find(user => user.userEmail === currentUser.email);
+    }
     const wishlist = user ? user.wishListItems : [];
 
   const addWishListItem = useAddWishList();
