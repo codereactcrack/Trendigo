@@ -18,10 +18,11 @@ const Products = lazy(()=>import('./component/products/Products'))
 const AllProducts = lazy(()=>import ('./component/products/AllProducts'))
 const ProductDetails = lazy(()=>import ('./component/products/ProductDetails'))
 
+import { Toaster } from 'react-hot-toast';
+const SellerDashboardRoute = lazy(()=>import ('./component/Auth/ProtectedRoute/SellerDashboardRoute'))
+const SellerDashBoard = lazy(()=>import ('./component/seller/SellerDashBoard'))
+const ProductList = lazy(()=>import('./component/seller/ProductList'))
 
-import toast, { Toaster } from 'react-hot-toast';
-import ProductList from './component/seller/ProductList';
-import SellerDashboardRoute from './component/Auth/ProtectedRoute/SellerDashboardRoute';
 
 function App() {
 
@@ -38,7 +39,8 @@ function App() {
           </Route>
           <Route path='about-us' element ={<About/>} />
           <Route path='contact-us' element ={<Contact />} />
-          <Route path='product-list' element = {<SellerDashboardRoute element={<ProductList />} />} />
+          <Route path='seller-Dashboard' element = {<SellerDashboardRoute element={<SellerDashBoard />} />} />
+          <Route path='product-listing' element = {<SellerDashboardRoute element={<ProductList />} />} />
           <Route path='cart' element ={<ProtectedRoute element={<Cart /> } />}/>
           <Route path='wishlist' element ={ <ProtectedRoute element={<Wishlist />} />} />
           <Route path='profile' element ={<Profile/>} />
