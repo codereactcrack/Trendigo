@@ -4,6 +4,7 @@ import useFetchCollection from '../../hooks/useFetchCollection';
 import UserContext from '../../context/AuthContext/UserContext';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const ProductListed = () => {
   const productList = useFetchCollection('product-list');
@@ -13,6 +14,7 @@ const ProductListed = () => {
   const [products, setProducts] = useState([]);
   const [editProduct, setEditProduct] = useState(null);
   const [editedFields, setEditedFields] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (productList && userList && currentUser) {
@@ -100,6 +102,7 @@ const ProductListed = () => {
                     type="text" 
                     value={editedFields.name} 
                     onChange={(e) => handleFieldChange('name', e.target.value)} 
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.name
@@ -111,6 +114,7 @@ const ProductListed = () => {
                     type="text" 
                     value={editedFields.brand} 
                     onChange={(e) => handleFieldChange('brand', e.target.value)} 
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.brand
@@ -122,6 +126,7 @@ const ProductListed = () => {
                     type="text" 
                     value={editedFields.category} 
                     onChange={(e) => handleFieldChange('category', e.target.value)} 
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.category
@@ -133,6 +138,7 @@ const ProductListed = () => {
                     type="number" 
                     value={editedFields.price} 
                     onChange={(e) => handleFieldChange('price', e.target.value)} 
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.price
@@ -145,7 +151,8 @@ const ProductListed = () => {
                     value={editedFields.discount}  
                     onChange={(e) => handleFieldChange('discount', Math.min(99, Math.max(0, e.target.value)))} 
                     min={0}
-                    max={99} 
+                    max={99}
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.discount
@@ -164,6 +171,7 @@ const ProductListed = () => {
                     type="number" 
                     value={editedFields.stock} 
                     onChange={(e) => handleFieldChange('stock', e.target.value)} 
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.stock
@@ -175,6 +183,7 @@ const ProductListed = () => {
                     type="text" 
                     value={editedFields.description} 
                     onChange={(e) => handleFieldChange('description', e.target.value)} 
+                    onClick={(e) => e.stopPropagation()} // Prevent propagation
                   />
                 ) : (
                   item.description
