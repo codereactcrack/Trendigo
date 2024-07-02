@@ -1,4 +1,4 @@
-import './css/ProductListed.css'
+import './css/ProductListed.css';
 import React, { useContext, useEffect, useState } from 'react';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import UserContext from '../../context/AuthContext/UserContext';
@@ -10,9 +10,10 @@ const ProductListed = () => {
   const userList = useFetchCollection('users');
   const { currentUser } = useContext(UserContext);
 
-  const [showScreen, setShowScreen] = useState(null);
-  const [value, setValue] = useState(0);
   const [products, setProducts] = useState([]);
+  const [editProduct, setEditProduct] = useState(null);
+  const [editedFields, setEditedFields] = useState({});
+
   useEffect(() => {
     if (productList && userList && currentUser) {
       const user = userList.find(data => data.userEmail === currentUser.email);
@@ -29,7 +30,7 @@ const ProductListed = () => {
 
   if (!user) return <div>No user found</div>;
 
-  if (products.length == 0) return <div>No Product Listed</div>;
+  if (products.length === 0) return <div>No Product Listed</div>;
 
   const handleDelete = async (productId) => {
     const docRef = doc(db, 'product-list', productId);
@@ -37,13 +38,37 @@ const ProductListed = () => {
     console.log('Deleted product with id:', productId);
   };
 
-  const handleRestock = async (productId) => {
-    const docRef = doc(db, 'product-list', productId);
-    await updateDoc(docRef, {
-      stock: value
+  const handleEdit = (product) => {
+    setEditProduct(product.id);
+    setEditedFields({
+      name: product.name,
+      brand: product.brand,
+      category: product.category,
+      price: product.price,
+      discount: product.discount,
+      finalPrice: Math.floor(product.price - (product.price * (product.discount / 100))),
+      stock: product.stock,
+      description: product.description
     });
-    console.log('Restocked product with id:', productId);
-    setShowScreen(null); 
+  };
+
+  const handleFieldChange = (field, value) => {
+    setEditedFields(prev => {
+      const updatedFields = { ...prev, [field]: value };
+      if (field === 'price' || field === 'discount') {
+        updatedFields.finalPrice = Math.floor(updatedFields.price - (updatedFields.price * (updatedFields.discount / 100)));
+      }
+      return updatedFields;
+    });
+  };
+
+  const handleSave = async (productId) => {
+    const docRef = doc(db, 'product-list', productId);
+    await updateDoc(docRef, editedFields);
+    console.log('Updated product with id:', productId);
+    setEditProduct(null);
+    // Update the products state to reflect the changes
+    setProducts(products.map(product => product.id === productId ? { ...product, ...editedFields } : product));
   };
 
   return (
@@ -69,24 +94,99 @@ const ProductListed = () => {
               <td className='table-data'>
                 <img src={item.images[0]} alt={item.name} className='product-image' />
               </td>
-              <td className='table-data'>{item.name}</td>
-              <td className='table-data'>{item.brand}</td>
-              <td className='table-data'>{item.category}</td>
-              <td className='table-data'>{item.price}</td>
-              <td className='table-data'>{item.discount}</td>
-              <td className='table-data'>{item.finalPrice}</td>
-              <td className='table-data'>{item.stock}</td>
-              <td className='table-data'>{item.description}</td>
               <td className='table-data'>
-                <button className='delete-button' onClick={() => handleDelete(item.id)}>Delete</button>
-                <button className='restock-button' onClick={() => setShowScreen(item.id)}>Restock</button>
-                {showScreen === item.id && (
-                  <div className='restock-form'>
-                    <div>Enter the quantity:</div>
-                    <input type='number' onChange={(e) => setValue(Number(e.target.value))} />
-                    <button onClick={() => handleRestock(item.id)}>Stock</button>
-                  </div>
+                {editProduct === item.id ? (
+                  <input 
+                    type="text" 
+                    value={editedFields.name} 
+                    onChange={(e) => handleFieldChange('name', e.target.value)} 
+                  />
+                ) : (
+                  item.name
                 )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <input 
+                    type="text" 
+                    value={editedFields.brand} 
+                    onChange={(e) => handleFieldChange('brand', e.target.value)} 
+                  />
+                ) : (
+                  item.brand
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <input 
+                    type="text" 
+                    value={editedFields.category} 
+                    onChange={(e) => handleFieldChange('category', e.target.value)} 
+                  />
+                ) : (
+                  item.category
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <input 
+                    type="number" 
+                    value={editedFields.price} 
+                    onChange={(e) => handleFieldChange('price', e.target.value)} 
+                  />
+                ) : (
+                  item.price
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <input 
+                    type="number" 
+                    value={editedFields.discount}  
+                    onChange={(e) => handleFieldChange('discount', Math.min(99, Math.max(0, e.target.value)))} 
+                    min={0}
+                    max={99} 
+                  />
+                ) : (
+                  item.discount
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  editedFields.finalPrice
+                ) : (
+                  item.finalPrice
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <input 
+                    type="number" 
+                    value={editedFields.stock} 
+                    onChange={(e) => handleFieldChange('stock', e.target.value)} 
+                  />
+                ) : (
+                  item.stock
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <input 
+                    type="text" 
+                    value={editedFields.description} 
+                    onChange={(e) => handleFieldChange('description', e.target.value)} 
+                  />
+                ) : (
+                  item.description
+                )}
+              </td>
+              <td className='table-data'>
+                {editProduct === item.id ? (
+                  <button onClick={() => handleSave(item.id)}>Save</button>
+                ) : (
+                  <button onClick={() => handleEdit(item)}>Edit</button>
+                )}
+                <button className='delete-button' onClick={() => handleDelete(item.id)}>Delete</button>
               </td>
             </tr>
           ))}
