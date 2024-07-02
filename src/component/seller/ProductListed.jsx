@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import './css/ProductListed.css'
+import React, { useContext, useEffect, useState } from 'react';
 import useFetchCollection from '../../hooks/useFetchCollection';
 import UserContext from '../../context/AuthContext/UserContext';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
-import './css/ProductListed.css'
 
 const ProductListed = () => {
   const productList = useFetchCollection('product-list');
@@ -12,14 +12,22 @@ const ProductListed = () => {
 
   const [showScreen, setShowScreen] = useState(null);
   const [value, setValue] = useState(0);
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    if (productList && userList && currentUser) {
+      const user = userList.find(data => data.userEmail === currentUser.email);
+      if (user) {
+        const userProducts = productList.filter(data => user.productListed.includes(data.id));
+        setProducts(userProducts);
+      }
+    }
+  }, [productList, userList, currentUser]);
 
   if (!productList || !userList || !currentUser) return null;
 
   const user = userList.find(data => data.userEmail === currentUser.email);
 
   if (!user) return <div>No user found</div>;
-
-  const products = productList.filter(data => user.productListed.includes(data.id));
 
   if (products.length == 0) return <div>No Product Listed</div>;
 

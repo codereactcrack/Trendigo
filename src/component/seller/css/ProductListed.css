@@ -85,20 +85,4 @@
     cursor: pointer;
   }
   
-  @media (max-width: 768px) {
-    .table-header, .table-data {
-      padding: 5px;
-      font-size: 14px;
-    }
-  
-    .product-image {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .delete-button, .restock-button, .restock-form button {
-      padding: 3px 7px;
-      font-size: 12px;
-    }
-  }
   
