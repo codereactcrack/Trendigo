@@ -21,7 +21,7 @@ const ProductListed = () => {
 
   const products = productList.filter(data => user.productListed.includes(data.id));
 
-  if (!products) return <div>No Product Listed</div>;
+  if (products.length == 0) return <div>No Product Listed</div>;
 
   const handleDelete = async (productId) => {
     const docRef = doc(db, 'product-list', productId);
