@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
-import './css/ProductList.css';
-import { addDoc, collection } from 'firebase/firestore';
+import './css/FormProductList.css';
+import { addDoc, arrayUnion, collection, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../services/firebase';
+import useFetchCollection from '../../hooks/useFetchCollection';
+import UserContext from '../../context/AuthContext/UserContext';
+import { useNavigate } from 'react-router-dom';
 
-const ProductList = () => {
-  const { register, handleSubmit, control, formState: { errors } } = useForm();
+const FormProductList = () => {
+  const { register, handleSubmit, control, formState: { errors } ,reset } = useForm();
   const { fields: imageFields, append: appendImage, remove: removeImage } = useFieldArray({
     control,
     name: 'images',
@@ -16,14 +19,19 @@ const ProductList = () => {
   });
   const productRef = collection(db, 'product-list');
 
-  async function onSubmit(data) {
-    const finalPrice = data.price - (data.price * (data.discount / 100));
+  const naviagte = useNavigate();
 
+  //getting current user from db to update the productListed
+  const userList = useFetchCollection('users');
+  const {currentUser} = useContext(UserContext);
+  const user = userList.find(data=>data.userEmail == currentUser.email);
+
+  async function onSubmit(data) {
+    const finalPrice = Math.floor(data.price - (data.price * (data.discount / 100)));
     // Map images and specifications to the desired structure
     const images = data.images.map(image => image.url);
     const specifications = data.specifications.map(spec => spec.spec);
-
-    await addDoc(productRef, {
+    const productDoc =await addDoc(productRef, {
       brand: data["product-brand"],
       category: data["product-category"],
       description: data["product-description"],
@@ -36,6 +44,15 @@ const ProductList = () => {
       stock: data.stock,
       featured: data.featured || false,  // Default to false if not specified
     });
+
+    //updating db for seller user -productListing
+    const docRef = doc(db,'users',user.id);
+    await updateDoc(docRef,{
+      productListed: arrayUnion(productDoc.id)
+    })
+
+    reset(); 
+    naviagte('/seller-Dashboard')
   }
 
   return (
@@ -107,4 +124,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default FormProductList;

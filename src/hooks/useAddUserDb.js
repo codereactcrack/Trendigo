@@ -14,7 +14,8 @@ const useAddUserDb = async (userAuth) => {
             profilePhoto: userAuth.user.photoURL,
             type:'buyer',
             wishListItems: [],
-            cartItems: []
+            cartItems: [],
+            productListed:[]
         });
     }
 };
