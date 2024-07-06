@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './css/CartPrice.css';
+import Order from './Order';
 
 const CartPrice = (props) => {
   const cartList = props.cartValue;
@@ -50,7 +51,9 @@ const CartPrice = (props) => {
         <span className='price-details-label'>TOTAL AMOUNT:</span>
         <span className='price-details-value'>₹{totalAmount}</span>
       </div>
-      <button className='place-order-button' >PLACE ORDER</button>
+      <div>
+        <Order amount ={totalAmount}/>
+      </div>
     </div>
   );
 };
