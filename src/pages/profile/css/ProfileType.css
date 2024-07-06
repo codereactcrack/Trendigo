@@ -4,7 +4,9 @@
   }
   
   .profile-type-prompt {
-    display: inline-block;
+    display: flex;
+    justify-content: space-around;
+    align-items: space-around;
   }
   
   .profile-type-text {
