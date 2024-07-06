@@ -35,23 +35,23 @@ const OrderHistory = () => {
   }
 
   return (
-    <div className="order-history-container">
+    <div className='order-history-container'>
       {orderDetails.length > 0 ? (
-        <ul className="order-list">
+        <ul className='order-list'>
           {orderDetails.map(order => (
-            <li key={order.id} className="order-item">
-              <div className="order-info">
+            <li key={order.id} className='order-item'>
+              <div className='order-info'>
                 <p><strong>Order ID:</strong> {order.orderId}</p>
                 <p><strong>Amount:</strong> ₹{order.amount}</p>
                 <p><strong>Time:</strong> {order.readableTime}</p>
-                <ul className="item-list">
+                <ul className='item-list'>
                   {order.items.map((item, index) => (
-                    <li key={index} className="item">
-                      <div className="item-info">
-                        <img src={item.images[0]} alt={item.name} className="item-image" />
+                    <li key={index} className='item'>
+                      <div className='item-info'>
+                        <img src={item.images[0]} alt={item.name} className='item-image' />
                         <div>
-                          <p className="item-name">{item.name}</p>
-                          <p className="item-price">Price: ₹{item.finalPrice}</p>
+                          <p className='item-name'>{item.name}</p>
+                          <p className='item-price'>Price: ₹{item.finalPrice}</p>
                         </div>
                       </div>
                     </li>
