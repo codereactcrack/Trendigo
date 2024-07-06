@@ -6,6 +6,7 @@ import { auth } from '../../services/firebase';
 import './css/Profile.css';
 import LoginIcon from '@mui/icons-material/Login';
 import ProfileType from './ProfileType';
+import OrderHistory from './OrderHistory';
 
 const Profile = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -32,6 +33,7 @@ const Profile = () => {
             <h3 className='order-history-heading'>Order History</h3>
             <div className='order-history-content'>
               {/* Order history items will go here */}
+              <OrderHistory />
             </div>
           </div>
         </div> : 
