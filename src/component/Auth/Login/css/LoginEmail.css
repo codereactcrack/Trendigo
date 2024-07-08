@@ -10,7 +10,8 @@
 /* Form styling */
 .login-form {
   background-color: #ddeafb;
-  padding: 40px;
+  margin-top: 20px;
+  padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -49,22 +50,19 @@
   margin-top: 5px;
 }
 
-/* Login button container */
-.login-button {
+/* Action button container */
+.action-button {
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-  margin-top: 20px;
 }
 
 /* Submit button styling */
-
 .login-button {
-  width: 100%;
   padding: 0.75rem;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: green;
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
@@ -72,12 +70,37 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s;
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color : greenyellow;
+  color: #333;
+  transform: translateY(-2px);
 }
+
+
+/* Back button styling */
+.back-button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background-color: purple;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.back-button:hover {
+  background-color : blue;
+  color: white;
+  transform: translateY(-2px);
+}
+
 
 

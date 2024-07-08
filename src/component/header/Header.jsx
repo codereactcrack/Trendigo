@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/images/logo-website.png';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';

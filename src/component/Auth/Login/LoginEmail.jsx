@@ -1,13 +1,14 @@
+import './css/LoginEmail.css';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../../services/firebase';
 import { useNavigate } from 'react-router-dom';
 import LoginIcon from '@mui/icons-material/Login';
-import './css/LoginEmail.css';
 import UserContext from '../../../context/AuthContext/UserContext';
 import useAddUserDb from '../../../hooks/useAddUserDb';
 import toast from 'react-hot-toast';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const LoginEmail = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -49,10 +50,15 @@ const LoginEmail = () => {
                  placeholder='Password' className='input-field' />
           {errors.password?.type === 'required' && <p role="alert" className='error-message'>Password is required</p>}
         </label>
-        <button type="submit" className='login-button'>
-            LOGIN
-            <LoginIcon className='login-icon' />
-        </button>
+        <div className='action-button'>
+          <button onClick={()=>navigate('/home')} className='back-button'> 
+              <ArrowBackIcon/>BACK
+          </button>
+          <button type="submit" className='login-button'>
+              LOGIN
+              <LoginIcon className='login-icon' />
+          </button>
+        </div>
       </form>
     </div>
   );

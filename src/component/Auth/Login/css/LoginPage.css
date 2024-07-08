@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: rgb(198, 92, 198);
     transition: background-color 0.3s;
     overflow: hidden;
     border-radius: 10px;
@@ -24,21 +24,21 @@
 }
 
 .login-left-banner img:hover {
-    transform: scale(1.05);
+    transform: scale(1.5);
 }
 
 /* Right authentication section */
-.login-right-auth {
+.login-right-auth { 
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
     background-color: #f9f6f6;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s;
     border-radius: 10px;
+    padding: 40px;
 }
 
 .login-right-auth:hover {
@@ -50,7 +50,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+    padding-top: 40px;
+
 }
 
 .logo img {
@@ -79,25 +80,7 @@
 .slogan {
     font-size: 16px;
     color: #666666;
-}
-
-/* Back button styling */
-.back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.back-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+   
 }
 
 /* Email authentication section */
@@ -113,7 +96,9 @@
     max-width: 400px;
     height: 1px;
     background-color: #e0e0e0;
-    margin: 20px 0;
+    margin: 10px 0;
+    border-top: 1px solid black;
+    opacity: 0.3;
 }
 
 /* Social authentication buttons */
@@ -130,7 +115,6 @@
 
 .social-auth a:hover {
     transform: translateY(-3px);
-    /* Lifts the button slightly on hover */
 }
 
 /* Terms of service */
